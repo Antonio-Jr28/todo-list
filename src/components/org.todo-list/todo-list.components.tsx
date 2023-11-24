@@ -30,41 +30,45 @@ export const TodoList: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8">
-      <div className="flex items-center">
-        <input
-          type="text"
-          className="border p-2 w-full"
-          placeholder="Adicione uma tarefa..."
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-        />
-        <button
-          onClick={addTodo}
-          className="ml-2 p-2 bg-blue-500 text-white rounded"
-        >
-          Adicionar
-        </button>
-      </div>
-
-      <ul className="mt-4">
-        {todos.map((todo) => (
-          <li
-            key={todo.id}
-            className={`flex items-center justify-between p-2 border-b ${
-              todo.completed ? "line-through text-gray-500" : ""
-            }`}
+    <div className="flex flex-col items-center">
+      <div className="mt-8" />
+      <h1 className="text-4xl shadow-md">Crie suas tarefas</h1>
+      <div className="max-w-md mx-auto mt-8">
+        <div className="flex items-center">
+          <input
+            type="text"
+            className="border p-2 w-full rounded-md shadow-md"
+            placeholder="Adicione uma tarefa..."
+            value={newTodo}
+            onChange={(e) => setNewTodo(e.target.value)}
+          />
+          <button
+            onClick={addTodo}
+            className="ml-2 p-2  text-white rounded-md shadow-md bg-blue-500"
           >
-            <span onClick={() => toggleTodo(todo.id)}>{todo.text}</span>
-            <button
-              onClick={() => removeTodo(todo.id)}
-              className="text-red-500"
+            Adicionar
+          </button>
+        </div>
+
+        <ul className="mt-4">
+          {todos.map((todo) => (
+            <li
+              key={todo.id}
+              className={`flex items-center justify-between p-2 border-b ${
+                todo.completed ? "line-through text-gray-500" : ""
+              }`}
             >
-              Remover
-            </button>
-          </li>
-        ))}
-      </ul>
+              <span onClick={() => toggleTodo(todo.id)}>{todo.text}</span>
+              <button
+                onClick={() => removeTodo(todo.id)}
+                className="text-red-500"
+              >
+                Remover
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
