@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { todoListStrings } from "./todo-list.string";
 
 interface Todo {
   id: number;
@@ -32,7 +33,13 @@ export const TodoList: React.FC = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="mt-8" />
-      <h1 className="text-4xl shadow-md">Crie suas tarefas</h1>
+
+      <h1 className="text-4xl shadow-md">{todoListStrings.title}</h1>
+
+      <div className="mt-8" />
+
+      <p>{todoListStrings.description}</p>
+
       <div className="max-w-md mx-auto mt-8">
         <div className="flex items-center">
           <input
@@ -46,7 +53,7 @@ export const TodoList: React.FC = () => {
             onClick={addTodo}
             className="ml-2 p-2  text-white rounded-md shadow-md bg-blue-500"
           >
-            Adicionar
+            {todoListStrings.addTaskButton}
           </button>
         </div>
 
@@ -63,7 +70,7 @@ export const TodoList: React.FC = () => {
                 onClick={() => removeTodo(todo.id)}
                 className="text-red-500"
               >
-                Remover
+                {todoListStrings.RemoveTaskButton}
               </button>
             </li>
           ))}
