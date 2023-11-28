@@ -4,7 +4,7 @@ export interface Task {
   id: any;
   title: string;
   status: string;
-  createdAt: Date;
+  created_at: Date;
 }
 
 interface TaskEditFormProps {
@@ -91,7 +91,10 @@ export const TaskListItem: React.FC<TaskListItemProps> = ({
             <h2 className="text-xl font-bold mb-2">{task.title}</h2>
             <p className="text-sm text-gray-500">Status: {task.status}</p>
             <p className="text-sm text-gray-500">
-              Criado em: {task.createdAt?.toLocaleString()}
+              <p className="text-sm text-gray-500">
+                Criado em:{" "}
+                {task.created_at ? task.created_at.toLocaleString() : "N/A"}
+              </p>
             </p>
           </>
         )}

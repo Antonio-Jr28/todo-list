@@ -14,7 +14,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
       title: titleInput,
       status: "pendente",
       id: new Date().getTime(),
-      createdAt: new Date(),
+      created_at: new Date(),
     };
 
     onAddTask(newTask);
