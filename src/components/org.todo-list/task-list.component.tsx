@@ -13,15 +13,17 @@ export const TaskList: React.FC<TaskListProps> = ({
   onEdit,
 }) => {
   return (
-    <ul className="space-y-6">
-      {tasks.map((task) => (
-        <TaskListItem
-          key={task.id}
-          task={task}
-          onDelete={onDelete}
-          onEdit={onEdit}
-        />
-      ))}
-    </ul>
+    <div className="flex flex-wrap">
+      <ul className="space-y-6">
+        {tasks.map((task) => (
+          <TaskListItem
+            key={task.id}
+            task={task}
+            onDelete={onDelete}
+            onEdit={onEdit}
+          />
+        ))}
+      </ul>
+    </div>
   );
 };

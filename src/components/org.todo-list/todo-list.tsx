@@ -1,26 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TaskForm } from "./task-form.components";
 import { Task } from "./task-list-item-component";
 import { TaskList } from "./task-list.component";
+import axios from "axios";
 
 export const TaskListContainer: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3333/tasks")
+      .then((response) => setTasks(response.data))
+      .catch((error) => console.error("Erro ao obter tarefas", error));
+  }, []);
+
   const addTask = (task: Task) => {
-    setTasks([...tasks, task]);
+    axios
+      .post("http://localhost:3333/tasks", task)
+      .then((response) => {
+        setTasks((prevTasks) => [...prevTasks, response.data]);
+
+        window.location.reload();
+      })
+      .catch((error) => console.error("Erro ao adicionar tarefa", error));
   };
 
   const deleteTask = (task: Task) => {
-    setTasks(tasks.filter((t) => t !== task));
+    axios
+      .delete(`http://localhost:3333/tasks/${task.id}`)
+      .then(() => setTasks(tasks.filter((t) => t !== task)))
+      .catch((error) => console.error("Erro ao excluir tarefa", error));
   };
 
   const editTask = (taskId: any, newTitle: string, newStatus: string) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === taskId
-        ? { ...task, title: newTitle, status: newStatus }
-        : task
-    );
-    setTasks(updatedTasks);
+    axios
+      .put(`http://localhost:3333/tasks/${taskId}`, {
+        title: newTitle,
+        status: newStatus,
+      })
+      .then(() => {
+        const updatedTasks = tasks.map((task) =>
+          task.id === taskId
+            ? { ...task, title: newTitle, status: newStatus }
+            : task
+        );
+        setTasks(updatedTasks);
+      })
+      .catch((error) => console.error("Erro ao editar tarefa", error));
   };
 
   return (

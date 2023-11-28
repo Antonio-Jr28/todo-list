@@ -4,7 +4,7 @@ export interface Task {
   id: any;
   title: string;
   status: string;
-  createdAt?: Date;
+  createdAt: Date;
 }
 
 interface TaskEditFormProps {

@@ -10,18 +10,21 @@ export const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
   const [titleInput, setTitleInput] = useState("");
 
   const handleAddTask = () => {
-    onAddTask({
+    const newTask: Task = {
       title: titleInput,
       status: "pendente",
       id: new Date().getTime(),
       createdAt: new Date(),
-    });
+    };
+
+    onAddTask(newTask);
+
     setTitleInput("");
   };
 
   return (
     <>
-    <div className="mt-10"/>
+      <div className="mt-10" />
       <form
         className="mb-4 border-3"
         onSubmit={(e) => {
