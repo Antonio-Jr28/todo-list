@@ -1,12 +1,14 @@
 import React from "react";
 
 import "./App.css";
-import { TodoList } from "./components/org.todo-list/todo-list.components";
+import "@fortawesome/fontawesome-free/css/all.css";
+
+import { TaskListContainer } from "./components/org.todo-list/todo-list";
 
 export const App = () => {
   return (
     <div>
-      <TodoList />
+      <TaskListContainer />
     </div>
   );
 };
