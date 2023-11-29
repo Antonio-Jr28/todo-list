@@ -78,8 +78,8 @@ export const TaskListItem: React.FC<TaskListItemProps> = ({
   };
 
   return (
-    <li className="bg-gray-200 p-4 rounded-xl flex flex-col items-center">
-      <div>
+    <li className="bg-gray-200 p-4 rounded-3xl flex flex-row justify-between space-x-2 items-center">
+      <div className="">
         {isEditing ? (
           <TaskEditForm
             task={task}
@@ -100,9 +100,9 @@ export const TaskListItem: React.FC<TaskListItemProps> = ({
         )}
       </div>
       <div className="mt-4" />
-      <div className="space-x-1">
+      <div className="flex flex-col space-x-1 space-y-2">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-full w-14 h-14 ml-1"
           onClick={() => setIsEditing(!isEditing)}
         >
           {isEditing ? (
@@ -112,10 +112,10 @@ export const TaskListItem: React.FC<TaskListItemProps> = ({
           )}
         </button>
         <button
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-red-500 hover:bg-red-700 text-white font-bold rounded-full w-14 h-14"
           onClick={() => onDelete(task)}
         >
-          <i className="fas fa-trash-alt"></i>
+          <i className="fas fa-trash"></i>
         </button>
       </div>
     </li>

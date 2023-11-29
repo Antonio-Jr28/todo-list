@@ -7,6 +7,7 @@ import axios from "axios";
 export const TaskListContainer: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
+  //requisição para consutar lista de tarefas no banco
   useEffect(() => {
     axios
       .get("http://localhost:3333/tasks")
@@ -14,6 +15,7 @@ export const TaskListContainer: React.FC = () => {
       .catch((error) => console.error("Erro ao obter tarefas", error));
   }, []);
 
+  //requisicao para adicionar nova tarefa
   const addTask = (task: Task) => {
     axios
       .post("http://localhost:3333/tasks", task)
@@ -25,6 +27,7 @@ export const TaskListContainer: React.FC = () => {
       .catch((error) => console.error("Erro ao adicionar tarefa", error));
   };
 
+  //requisicao para deletar tarefa
   const deleteTask = (task: Task) => {
     axios
       .delete(`http://localhost:3333/tasks/${task.id}`)
@@ -32,6 +35,7 @@ export const TaskListContainer: React.FC = () => {
       .catch((error) => console.error("Erro ao excluir tarefa", error));
   };
 
+  //requisicao para editar tarefa
   const editTask = (taskId: any, newTitle: string, newStatus: string) => {
     axios
       .put(`http://localhost:3333/tasks/${taskId}`, {
@@ -50,9 +54,11 @@ export const TaskListContainer: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <TaskForm onAddTask={addTask} />
-      <TaskList tasks={tasks} onDelete={deleteTask} onEdit={editTask} />
-    </div>
+    <section className="flex flex-col items-center">
+      <div className="flex flex-col items-center">
+        <TaskForm onAddTask={addTask} />
+        <TaskList tasks={tasks} onDelete={deleteTask} onEdit={editTask} />
+      </div>
+    </section>
   );
 };

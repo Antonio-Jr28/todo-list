@@ -23,7 +23,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
   };
 
   return (
-    <>
+   <>
       <div className="mt-10" />
       <form
         className="mb-4 border-3"
@@ -46,6 +46,6 @@ export const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
           <i className="fas fa-plus"></i>
         </button>
       </form>
-    </>
+  </>
   );
 };
